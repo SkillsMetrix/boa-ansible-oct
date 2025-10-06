@@ -1,10 +1,25 @@
-userage= int(input('Enter User Age'))
 
-if userage <=0:
-    print('Enter Valid Age')
-elif userage <18:
-    print('Not Allowed to vote')
-elif userage >=18 and userage <80:
-    print('You Can Vote')
-else:
-    print('Senior Citizen')
+# class declaration
+class DemoClass:
+    name='shashi'
+    email='shashi@mail.com'
+
+    # constructor declarations
+
+    def __init__(self,city,pincode):
+        self.city=city
+        self.pincode=pincode
+
+    # declare functions
+    def showData(self):
+        print(self.name,self.email,self.city,self.pincode)
+
+
+#object creation
+
+demo= DemoClass('pune',412345)
+demo.showData()
+
+
+
+
