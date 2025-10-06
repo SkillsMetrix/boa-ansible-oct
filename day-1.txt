@@ -1,12 +1,10 @@
-# declare an empty array
-use_number=[]
-#ask the user ,how many numbers wana add?
+userage= int(input('Enter User Age'))
 
-data= int(input('How many numbers you wana add?  '))
-
-print(data)
-
-for i in range(data):
-    num= int(input (f"Enter numbers  "))
-    use_number.append(num)
-print(use_number)
+if userage <=0:
+    print('Enter Valid Age')
+elif userage <18:
+    print('Not Allowed to vote')
+elif userage >=18 and userage <80:
+    print('You Can Vote')
+else:
+    print('Senior Citizen')
