@@ -11,14 +11,20 @@ class DemoClass:
         self.pincode=pincode
 
     # declare functions
-    def showData(self):
-        print(self.name,self.email,self.city,self.pincode)
+    #def showData(self):
+    #    print(self.name,self.email,self.city,self.pincode)
+    
+    # function to convert object into human readable string
+
+    def __str__(self):
+        return f"{self.name},{self.email},{self.city},{self.pincode}"
 
 
 #object creation
 
 demo= DemoClass('pune',412345)
-demo.showData()
+print(demo)
+#demo.showData()
 
 
 
