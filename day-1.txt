@@ -1,31 +1,28 @@
-
-# class declaration
-class DemoClass:
-    name='shashi'
-    email='shashi@mail.com'
-
-    # constructor declarations
-
-    def __init__(self,city,pincode):
-        self.city=city
-        self.pincode=pincode
-
-    # declare functions
-    #def showData(self):
-    #    print(self.name,self.email,self.city,self.pincode)
-    
-    # function to convert object into human readable string
-
-    def __str__(self):
-        return f"{self.name},{self.email},{self.city},{self.pincode}"
+class RBI:
+    def withdraw(amount):
+        pass
+    def deposit(amount):
+        pass
+    def checkBalance(self):
+        pass
 
 
-#object creation
-
-demo= DemoClass('pune',412345)
-print(demo)
-#demo.showData()
+--------
 
 
+from SBIBank import SBI
+
+publicSectorBank= SBI()
+publicSectorBank.openFD()
+publicSectorBank.checkBalance()
 
 
+------
+
+from RBIBank import RBI
+
+class SBI(RBI):
+    def openFD(self):
+        print('SBI Bank open FD Account')
+    def checkBalance(self):
+        print('checking balance in SBI')
