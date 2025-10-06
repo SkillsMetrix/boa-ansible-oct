@@ -1,0 +1,12 @@
+# print the statement
+print('welcome to python and ansible')
+
+# declare the var
+
+name="Admin"
+age=23
+city='pune'
+#simple print
+print("The User Details as Follows " , name , age,  city)
+# formatted print
+print(f"User Details, {name} age is {age} and city is {city}")
