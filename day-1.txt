@@ -1,12 +1,12 @@
-# print the statement
-print('welcome to python and ansible')
+# declare an empty array
+use_number=[]
+#ask the user ,how many numbers wana add?
 
-# declare the var
+data= int(input('How many numbers you wana add?  '))
 
-name="Admin"
-age=23
-city='pune'
-#simple print
-print("The User Details as Follows " , name , age,  city)
-# formatted print
-print(f"User Details, {name} age is {age} and city is {city}")
+print(data)
+
+for i in range(data):
+    num= int(input (f"Enter numbers  "))
+    use_number.append(num)
+print(use_number)
