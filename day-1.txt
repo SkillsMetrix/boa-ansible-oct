@@ -1,23 +1,17 @@
-from fastapi import FastAPI
-from . import CUD,Readops,schema
-from .database import engine
-app= FastAPI()
 
-schema.Base.metadata.create_all(bind=engine)
-app.include_router(CUD.router)
-app.include_router(Readops.router)
+from fastapi  import APIRouter,status,Depends,HTTPException
+from .database import get_connection
+from . import models,schema
+from sqlalchemy.orm import Session
+router= APIRouter(tags=["User Create,Update and Delete Application"])
 
 
+@router.post('/adduser')
+def addUserToDB(payload:models.User,db:Session=Depends(get_connection)):
+    postdata=schema.UserApp(**payload.model_dump())
+    db.add(postdata)
+    db.commit()
 
----
+    return {"message":"User Added"}
 
-
-from sqlalchemy import Column,String
-from .database import Base
-
-class UserApp(Base):
-    __tablename__='USERAPP'
-
-    uname=Column(String,primary_key=True)
-    email=Column(String)
-    city=Column(String)
+ 
