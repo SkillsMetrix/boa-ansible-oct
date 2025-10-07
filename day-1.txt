@@ -1,27 +1,38 @@
-from abc import ABC,abstractmethod
 
-class RBI(ABC):
-    @abstractmethod
-    def withdraw(amount):
-        pass
-    @abstractmethod
-    def deposit(amount):
-        pass
-    @abstractmethod
-    def checkBalance(self):
-        pass
+from fastapi  import APIRouter
 
---------
+router= APIRouter(tags=["User Create,Update and Delete Application"])
 
-from RBIBank import RBI
 
-class SBI(RBI):
-    def openFD(self):
-        print('SBI Bank open FD Account')
-    def checkBalance(self):
-        print('checking balance in SBI')
-    def withdraw(self,amount):
-        print(f"amount withdrawn {self.balance}")
-    
-    def deposit(self,amount):
-        print(f"amount deposit {self.balance}")
+@router.get('/welcomeuser')
+def showWelcome():
+    return {"message":"welcome to FastAPI"}
+
+@router.get('/usersadd')
+def showUsers():
+    return {"message":"User Details"}
+
+------------------
+
+
+from fastapi  import APIRouter
+
+router= APIRouter(tags=["User Read Operation"])
+
+
+@router.get('/welcome')
+def showWelcome():
+    return {"message":"welcome to FastAPI"}
+
+@router.get('/users')
+def showUsers():
+    return {"message":"User Details"}
+
+
+---------
+from fastapi import FastAPI
+from . import CUD,Readops
+app= FastAPI()
+
+app.include_router(CUD.router)
+app.include_router(Readops.router)
