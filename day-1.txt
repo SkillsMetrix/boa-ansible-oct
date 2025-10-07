@@ -14,4 +14,11 @@ def addUserToDB(payload:models.User,db:Session=Depends(get_connection)):
 
     return {"message":"User Added"}
 
- 
+@router.delete('/deleteuser/{name}')
+def deleteUser(name:str,db:Session=Depends(get_connection)):
+    users=db.query(schema.UserApp).filter(schema.UserApp.uname == name).first()
+    if users == None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="OOPS...! given user not found")
+    db.delete(users)
+    db.commit()
+    return {"message":"user deleted"}
