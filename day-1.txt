@@ -1,38 +1,16 @@
 
-from fastapi  import APIRouter
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-router= APIRouter(tags=["User Create,Update and Delete Application"])
-
-
-@router.get('/welcomeuser')
-def showWelcome():
-    return {"message":"welcome to FastAPI"}
-
-@router.get('/usersadd')
-def showUsers():
-    return {"message":"User Details"}
-
-------------------
-
-
-from fastapi  import APIRouter
-
-router= APIRouter(tags=["User Read Operation"])
-
-
-@router.get('/welcome')
-def showWelcome():
-    return {"message":"welcome to FastAPI"}
-
-@router.get('/users')
-def showUsers():
-    return {"message":"User Details"}
-
-
----------
-from fastapi import FastAPI
-from . import CUD,Readops
-app= FastAPI()
-
-app.include_router(CUD.router)
-app.include_router(Readops.router)
+SQL_DB = "sqlite:///./boa.db"
+engine = create_engine(
+    SQL_DB, connect_args={"check_same_thread": False})
+SessioLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+def get_connection():
+    db = SessioLocal()
+    try:
+        yield db
+    finally:
+        db.close()
