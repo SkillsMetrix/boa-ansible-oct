@@ -1,50 +1,24 @@
 
-- hosts: web
-  become: true
-  pre_tasks:
-   - name: load pre task
-     import_tasks: pretask.yaml
-  post_tasks:
-    - name: load post taks
-      import_tasks: posttask.yaml
+- name: check the background
+  debug:
+    msg: "OS:: {{ansible_os_family}}, RAM:: {{ansible_memtotal_mb}} : MB"
 
-----------
-
-- name: update cache
+- name: install packages on respective Debian OS families
   apt:
-      update_cache: true
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop: "{{debian_packages}}"
+  when:
+    - ansible_os_family == 'Debian'
+    - ansible_memtotal_mb >= min_required_ram_mb
 
-- name: Install required softwares
+- name: install packages on respective redhat OS families
   apt:
-        name:
-          - python3
-          - python3-pip
-          - python3-venv
-        state: latest
-
-- name: create fastAPI Directory on remote machine
-  file:
-        path: /opt/fastapi_app
-        state: directory
-        mode: '0755'
-    
-- name: copy local directory to target machine
-  copy:
-        src: userapp/
-        dest: /opt/fastapi_app
-        mode: '0644'
-
-
-=======
-
-- name: create venv
-  command: python3 -m venv /opt/fastapi_app/venv
-    
-- name: install fastapi and uvicorn 
-  command: /opt/fastapi_app/venv/bin/pip install fastapi uvicorn
-    
-- name: run the application
-  shell: |
-        nohup /opt/fastapi_app/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 &
-  args:
-        chdir: /opt/fastapi_app
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop: "{{redhat_packages}}"
+  when:
+    - ansible_os_family == 'RedHat'
+    - ansible_memtotal_mb >= min_required_ram_mb
