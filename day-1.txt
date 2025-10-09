@@ -1,24 +1,39 @@
 
-from fastapi  import APIRouter,status,Depends,HTTPException
-from .database import get_connection
-from . import models,schema
-from sqlalchemy.orm import Session
-router= APIRouter(tags=["User Create,Update and Delete Application"])
+- hosts: web
+  become: true
+  pre_tasks:
+    - name: update cache
+      apt:
+        update_cache: true
+  tasks:
+    - name: Install required softwares
+      apt:
+        name:
+          - python3
+          - python3-pip
+          - python3-venv
+        state: latest
 
+    - name: create fastAPI Directory on remote machine
+      file:
+        path: /opt/fastapi_app
+        state: directory
+        mode: '0755'
+    
+    - name: copy local directory to target machine
+      copy:
+        src: userapp/
+        dest: /opt/fastapi_app
+        mode: '0644'
 
-@router.post('/adduser')
-def addUserToDB(payload:models.User,db:Session=Depends(get_connection)):
-    postdata=schema.UserApp(**payload.model_dump())
-    db.add(postdata)
-    db.commit()
-
-    return {"message":"User Added"}
-
-@router.delete('/deleteuser/{name}')
-def deleteUser(name:str,db:Session=Depends(get_connection)):
-    users=db.query(schema.UserApp).filter(schema.UserApp.uname == name).first()
-    if users == None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="OOPS...! given user not found")
-    db.delete(users)
-    db.commit()
-    return {"message":"user deleted"}
+    - name: create venv
+      command: python3 -m venv /opt/fastapi_app/venv
+    
+    - name: install fastapi and uvicorn 
+      command: /opt/fastapi_app/venv/bin/pip install fastapi uvicorn
+    
+    - name: run the application
+      shell: |
+        nohup /opt/fastapi_app/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 &
+      args:
+        chdir: /opt/fastapi_app
