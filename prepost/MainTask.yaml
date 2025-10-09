@@ -1,0 +1,13 @@
+- hosts: web
+  become: true
+
+  pre_tasks:
+    - name: load it before main task
+      import_tasks: pretask.yaml
+  
+  tasks:
+    - name: call main task
+      import_tasks: posttask.yaml
+
+    - name: call copy data
+      import_tasks: copyfile.yaml

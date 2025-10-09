@@ -1,0 +1,4 @@
+- name: copy the file to dest
+  copy:
+    src: index.html
+    dest: /var/www/html
