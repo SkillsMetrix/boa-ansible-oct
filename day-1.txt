@@ -62,10 +62,10 @@
   uri:
     url: "http://localhost:{exposed_port}"
     status_code: 200
-    register: healthcheck
-    retries: 10
-    delay: 3
-    until: healthcheck.status == 200
+  register: healthcheck
+  retries: 10
+  delay: 3
+  until: healthcheck.status == 200
 
 
   
