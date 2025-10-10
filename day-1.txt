@@ -1,6 +1,14 @@
 
 - name: copy index file to remote
-  template: src=index.html dest=/home/ubuntu
+  template: src=index2.html dest=/home/ubuntu
+  ignore_errors: true
+  register: copy_result
+
+- name: print error
+  debug:
+    var: copy_result
 
 - name: copy updated file to remote
   template: src=update.html dest=/home/ubuntu
+  failed_when:
+    - copy_result.failed == true
