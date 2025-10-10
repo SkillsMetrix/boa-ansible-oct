@@ -1,0 +1,165 @@
+379  ls -la
+  380  mkdir -p ~/.ssh
+  381  cp -v "/mnt/d/trainings/boa-sep-py/ansible-training/boa-remote.pem" ~/.ssh/
+  382  ssh-copy-id -f "-o IdentityFile ~/.ssh/boa-remote.pem" ubuntu@52.11.76.47
+  383  chmod 400 ~/.ssh/boa-remote.pem
+  384  ssh-copy-id -f "-o IdentityFile ~/.ssh/boa-remote.pem" ubuntu@52.11.76.47
+  385  ssh -o ' IdentityFile ~/.ssh/boa-remote.pem' 'ubuntu@52.11.76.47'
+  386  ssh-copy-id -f "-o IdentityFile ~/.ssh/boa-remote.pem" ubuntu@100.21.73.122
+  387  ssh -o ' IdentityFile ~/.ssh/boa-remote.pem' 'ubuntu@100.21.73.122'
+  388  clear
+  389  ansible -i inventory.ini -m ping all
+  390  ansible -i inventory.ini -m ping web
+  391  clear
+  392  ansible-playbook -i inventory.ini day-1/playbook-1.yaml --check--diff
+  393  ansible-playbook -i inventory.ini day-1/playbook-1.yaml --check --diff
+  394  ansible-playbook -i inventory.ini day-1/playbook-1.yaml   
+  395  history
+  396  ansible-playbook -i inventory.ini day-1/playbook-1.yaml   
+  397  ansible-playbook -i inventory.ini day-1/playbook-2.yaml --check --diff
+  398  ansible-playbook -i inventory.ini day-1/playbook2.yaml --check --diff
+  399  ansible-playbook -i inventory.ini day-1/playbook2.yaml    
+  400  clear
+  401  ansible -i inventory.ini -m ping all
+  402  clear
+  403  ansible -i inventory.ini -m ping all
+  404  ansible -i inventory.ini -m ping web
+  405  ansible -i inventory.ini -m ping db
+  406  ansible -i inventory.ini -m ping web
+  407  ansible -i inventory.ini -m ping db
+  408  ansible-playbook -i inventory.ini day-2/MainTask.yaml --check --diff
+  409  ansible-playbook -i inventory.ini day-2/MainTask.yaml     
+  410  clear
+  411  ansible-playbook -i inventory.ini day-2/python-app/playbook.yaml --check --diff
+  412  clear
+  413  ansible-playbook -i inventory.ini day-2/python-app/playbook.yaml --check --diff
+  414  ansible-playbook -i inventory.ini day-2/python-app/playbook.yaml
+  415  ansible-playbook -i inventory.ini day-2/python-app/playbook.yaml --check --diff
+  416  ansible-playbook -i inventory.ini day-2/python-app/playbook.yaml
+  417  ansible-playbook -i inventory.ini role1-playbook.yaml     
+  418  clear
+  419  history
+  420  ansible-galaxy role init role2
+  421  clear
+  422  ansible-playbook -i inventory.ini role1-playbook.yaml --check --diff
+  423  ansible-playbook -i inventory.ini role1-playbook.yaml     
+  424  cd ansible-training/
+  425  ansible -i inventory.ini -m ping all
+  426  ansible-galaxy role init role3
+  427  ansible-playbook -i inventory.ini role1-playbook.yaml --check --diff
+  428  ansible-playbook -i inventory.ini role1-playbook.yaml     
+  429  ansible-galaxy role init role4
+  430  ansible-playbook -i inventory.ini role1-playbook.yaml     
+  431  clear
+  432  ansible-galaxy role init role5
+  433  ansible-playbook -i inventory.ini role1-playbook.yaml     
+  434  ansible-playbook -i inventory.ini vault-app/playbook.yaml 
+  435  clear
+  436  ansible-vault create group_vars/my_vault.yaml
+  437  ansible-vault view  group_vars/my_vault.yaml
+  438  ansible-playbook -i inventory.ini vault-app/playbook.yaml 
+  439  clear
+  440  cd vault-app/
+  441  ansible-vault create group_vars/my_vault.yaml
+  442  ansible-playbook -i inventory.ini vault-app/playbook.yaml -e @group_vars/my_vault.yaml --ask-vault-pass
+  443  ansible-playbook -i inventory.ini playbook.yaml -e @group_vars/my_vault.yaml --ask-vault-pass
+  444  ul---ask-vault-pass
+  445  history
+  446  clear
+  447  openssl rand -base64 2048 > pass_file/ansible-vault.pass  
+  448  ansible-vault create group_vars/my_vault_base64.yaml  --vault-password-file=pass_file/ansible-vault.pass
+  449  ansible-vault create group_vars/my_vault_base64.yaml --vault-password-file=pass_file/ansible-vault.pass
+  450  openssl rand -base64 2048 > pass_file/ansible-vault.pass  
+  451  source D:/trainings/boa-ansible-oct/boavenv/Scripts/activate
+  452  clear
+  453  history
+  454  clear
+  455  chmod 400 "boa-oct.pem"
+  456  cd ansible-pyhon/
+  457  cd ansible-training/
+  458  chmod 400 "boa-oct.pem"
+  459  history
+  460  cp -v "/mnt/d/trainings/boa-ansible-oct/ansible-python/ansible-training/boa-remote.pem" ~/.ssh/
+  461  cd /mnt/d/trainings/boa-ansible-oct/ansible-pyhon/ansible-training
+  462  ls -la *.pem
+  463  mkdir -p ~/.ssh
+  464  chmod 400 "boa-oct.pem"
+  465  cp -v "/mnt/d/trainings/boa-ansible-oct/ansible-pyhon/ansible-training/boa-remote.pem" ~/.ssh/
+  466  cp -v "/mnt/d/trainings/boa-ansible-oct/ansible-pyhon/ansible-training/boa-oct.pem" ~/.ssh/
+  467  chmod 400 ~/.ssh/boa-oct.pem
+  468  chmod go-w ~
+  469  ssh -i "boa-oct.pem" ubuntu@ec2-34-221-70-212.us-west-2.compute.amazonaws.com
+  470  ansible --version
+  471  clear
+  472  history
+  473  ssh -i "boa-oct.pem" ubuntu@ec2-34-217-5-136.us-west-2.compute.amazonaws.com
+  474  chmod 400 ~/.ssh/boa-oct.pem
+  475  ssh -i "boa-oct.pem" ubuntu@ec2-34-217-5-136.us-west-2.compute.amazonaws.com
+  476  cp -v "/mnt/d/trainings/boa-ansible-oct/ansible-pyhon/ansible-training/boa-oct.pem" ~/.ssh/
+  477  chmod 400 ~/.ssh/boa-oct.pem
+  478  ssh-keygen
+  479  ssh -i "boa-oct.pem" ubuntu@ec2-34-217-5-136.us-west-2.compute.amazonaws.com
+  480  clear
+  481  history
+  482  ssh-copy-id -f "-o IdentityFile ~/.ssh/boa-oct.pem" ubuntu@34.217.5.136
+  483  ssh-copy-id -f "-o IdentityFile ~/.ssh/boa-oct.pem" ubuntu@52.13.78.208
+  484  ssh -o ' IdentityFile ~/.ssh/boa-oct.pem' 'ubuntu@52.13.78.208'
+  485  ansible -i inventory.ini -m ping all
+  486  clear
+  487  ansible -i inventory.ini -m ping web
+  488  ansible -i inventory.ini -m ping db
+  489  history
+  490  clear
+  491  ansible-playbook -i inventory.ini playbook.yaml --diff --check
+  492  clear
+  493  ansible-playbook -i inventory.ini playbook.yaml
+  494  ansible-playbook -i inventory.ini playbook2.yaml --diff --check
+  495  ansible-playbook -i inventory.ini playbook2.yaml
+  496  ansible-playbook -i inventory.ini playbook1.yaml
+  497  ansible-playbook -i inventory.ini playbook3.yaml
+  498  boavenv/Scripts/activate
+  499  cd ansible-pyhon/ansible-training/
+  500  ansible -i inventory.ini -m ping all
+  501  cls
+  502  clear
+  503  cd ansible-pyhon/ansible-training/
+  504  ansible -i inventory.ini -m ping all
+  505  ansible-playbook -i inventory.ini prepost/MainTask.yaml --diff --check
+  506  ansible-playbook -i inventory.ini prepost/MainTask.yaml   
+  507  ansible-playbook -i inventory.ini prepost/MainTask.yaml --skip-tags os_check
+  508  clear
+  509  ansible-playbook -i inventory.ini fastapi_app/playbook.yaml --check --diff
+  510  ansible-playbook -i inventory.ini fastapi_app/playbook.yaml
+  511  ansible-playbook -i inventory.ini fastapi_app/playbook.yaml --check --diff
+  512  ansible-galaxy role init role1-demo
+  513  ansible-playbook -i inventory.ini role1.yaml --check --diff
+  514  ansible-galaxy role init role2-demo
+  515  ansible-playbook -i inventory.ini role1.yaml --check --diff
+  516  ansible-galaxy role init role23-demo
+  517  ansible-playbook -i inventory.ini role1.yaml
+  518  ansible -i inventory.ini -m ping all
+  519  clear
+  520  ansible-galaxy role init role4-demo
+  521  ansible-playbook -i inventory.ini role1.yaml
+  522  clear
+  523  ansible-playbook -i inventory.ini role1.yaml
+  524  clear
+  525  ansible-galaxy role init role5-demo
+  526  ansible-playbook -i inventory.ini role1.yaml
+  527  ansible-galaxy role init mini-pro
+  528  ansible-playbook -i inventory.ini role1.yaml
+  529  ansible-galaxy role init mini-pro-docker
+  530  ansible-playbook -i inventory.ini role1.yaml --check --diff
+  531  ansible-playbook -i inventory.ini role1.yaml
+  532  cd vault-app/
+  533  ansible-vault create group_vars/my_vault.yaml
+  534  ansible-vault view  group_vars/my_vault.yaml
+  535  ansible-playbook -i ../inventory.ini playbook.yaml        
+  536  clear
+  537  ansible-playbook -i ../inventory.ini playbook.yaml -e @group_vars/my_vault.yaml --ask-vault-pass
+  538  ansible-vault edit  group_vars/my_vault.yaml
+  539  ansible-vault view  group_vars/my_vault.yaml
+  540  clear
+  541  openssl rand -base64 2048 > pass_file/ansible-vault.pass  
+  542  ansible-vault create group_vars/base64_vault.yaml --vault-password-file=pass_file/ansible-vault.pass
+  543  history
